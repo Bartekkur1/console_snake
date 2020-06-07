@@ -14,6 +14,7 @@ namespace console_snake
         private MapRenderer _mapRenderer { get; set; }
         private Map _map { get; set; }
         private Player _player { get; set; }
+        public bool IsRunning { get; set; } = true;
 
         public void Init()
         {
@@ -29,26 +30,24 @@ namespace console_snake
 
         public void Run()
         {
-            while (true)
+            while (IsRunning)
             {
                 this._mapRenderer.Render();
-                if (Console.ReadKey().Key == ConsoleKey.A)
+                switch (Console.ReadKey().Key)
                 {
-                    this._player.Position.X -= 2;
+                    case ConsoleKey.A:
+                        this._player.Position.X -= 2;
+                        break;
+                    case ConsoleKey.D:
+                        this._player.Position.X += 2;
+                        break;
+                    case ConsoleKey.W:
+                        this._player.Position.Y -= 1;
+                        break;
+                    case ConsoleKey.S:
+                        this._player.Position.Y += 1;
+                        break;
                 }
-                else if (Console.ReadKey().Key == ConsoleKey.D)
-                {
-                    this._player.Position.X += 2;
-                }
-                else if (Console.ReadKey().Key == ConsoleKey.W)
-                {
-                    this._player.Position.Y += 1;
-                }
-                else if (Console.ReadKey().Key == ConsoleKey.S)
-                {
-                    this._player.Position.Y -= 1;
-                }
-
             }
         }
     }
