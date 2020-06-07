@@ -33,7 +33,9 @@ namespace console_snake
             while (IsRunning)
             {
                 this._mapRenderer.Render();
-                _player.Move(Console.ReadKey().Key);
+                var keyPressed = Console.ReadKey().Key;
+                _player.Move(keyPressed, 1);
+                if(_player.Position.X < 0) _player.Move(ConsoleKey.D, 10);
             }
         }
     }

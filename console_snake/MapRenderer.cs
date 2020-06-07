@@ -49,7 +49,7 @@ namespace console_snake
             {
                 Console.SetCursorPosition(e.Position.X,e.Position.Y);
                 Console.BackgroundColor = e.Color;
-                Console.Write(e.Model); // ctrl ez
+                Console.Write(e.Model);
                 Console.BackgroundColor = ConsoleColor.Black;
             });
         }

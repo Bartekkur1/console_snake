@@ -10,21 +10,21 @@ namespace console_snake.Entity
             this.Color = color;
         }
 
-        public void Move(ConsoleKey keyPressed)
+        public void Move(ConsoleKey keyPressed, int speed)
         {
             switch (keyPressed)
             {
                 case ConsoleKey.A:
-                    Position.X -= 2;
+                    Position.X -= speed * 2;
                     break;
                 case ConsoleKey.D:
-                    Position.X += 2;
+                    Position.X += speed * 2;
                     break;
                 case ConsoleKey.W:
-                    Position.Y -= 1;
+                    Position.Y -= speed;
                     break;
                 case ConsoleKey.S:
-                    Position.Y += 1;
+                    Position.Y += speed;
                     break;
             }
         }
