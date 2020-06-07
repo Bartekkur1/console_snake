@@ -33,21 +33,7 @@ namespace console_snake
             while (IsRunning)
             {
                 this._mapRenderer.Render();
-                switch (Console.ReadKey().Key)
-                {
-                    case ConsoleKey.A:
-                        this._player.Position.X -= 2;
-                        break;
-                    case ConsoleKey.D:
-                        this._player.Position.X += 2;
-                        break;
-                    case ConsoleKey.W:
-                        this._player.Position.Y -= 1;
-                        break;
-                    case ConsoleKey.S:
-                        this._player.Position.Y += 1;
-                        break;
-                }
+                _player.Move(Console.ReadKey().Key);
             }
         }
     }
