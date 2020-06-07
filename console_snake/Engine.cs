@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using console_snake.Entity;
 
 namespace console_snake
@@ -15,14 +16,15 @@ namespace console_snake
         private Map _map { get; set; }
         private Player _player { get; set; }
         public bool IsRunning { get; set; } = true;
+        public int GameLoop { get; set; } = 200;
 
         public void Init()
         {
             Console.SetWindowSize(40, 20);
             Console.ForegroundColor = ConsoleColor.Black;
             Console.CursorVisible = false;
-            this._map = new Map(10, 10);
-            this._player = new Player(5,5,ConsoleColor.Green);
+            this._map = new Map(20, 20);
+            this._player = new Player(20,10,ConsoleColor.Green);
             _map.Entities.Add(_player);
 
             _mapRenderer = new MapRenderer(_map);
@@ -30,12 +32,26 @@ namespace console_snake
 
         public void Run()
         {
+
             while (IsRunning)
             {
+                _player.Move();
+                if (_player.OutOfBounds(this._map))
+                {
+                    this.IsRunning = false;
+                    Console.Clear();
+                    Console.ForegroundColor = ConsoleColor.White;
+                    Console.WriteLine("Game Over");
+                    break;
+                }
                 this._mapRenderer.Render();
-                var keyPressed = Console.ReadKey().Key;
-                _player.Move(keyPressed, 1);
-                if(_player.Position.X < 0) _player.Move(ConsoleKey.D, 10);
+                Thread.Sleep(GameLoop);
+                while (Console.KeyAvailable)
+                {
+
+                    var keyPressed = Console.ReadKey().Key;
+                    _player.SetDirection(keyPressed);
+                }
             }
         }
     }
