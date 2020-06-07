@@ -6,7 +6,11 @@ namespace console_snake
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Engine en = new Engine();
+            en.Init();
+            en.Run();
+
+            Console.ReadLine();
         }
     }
 }
