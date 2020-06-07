@@ -42,8 +42,7 @@ namespace console_snake
 
 
             #endregion
-
-            
+             
             //Version 2
             Console.Clear();
             this._map.Entities.ForEach(e =>
