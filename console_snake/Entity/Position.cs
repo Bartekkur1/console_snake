@@ -12,7 +12,11 @@ namespace console_snake.Entity
             Random random = new Random();
             return new Position(random.Next(min_x,max_x), random.Next(min_y, max_y));
         }
-
+        public Position(Position position)
+        {
+            this.X = position.X;
+            this.Y = position.Y;
+        }
         public Position(int x, int y)
         {
             X = x;

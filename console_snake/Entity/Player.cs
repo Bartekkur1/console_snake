@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Reflection.Metadata;
 using System.Runtime.CompilerServices;
 
@@ -9,9 +11,11 @@ namespace console_snake.Entity
         public PlayerDirection PlayerDirection { get; set; }
         public int Speed { get; set; } = 1;
         private Position _mapSize  { get; set; }
+        public List<Tail> Tail { get; set; }
         public Player(int x, int y, ConsoleColor color) : base(x, y, color)
         {
             this.PlayerDirection = PlayerDirection.DOWN;
+            this.Tail = new List<Tail>();
         }
 
         public void SetSizeMap(Map map)
@@ -42,6 +46,8 @@ namespace console_snake.Entity
 
         public void Move()
         {
+            this.TailMove();
+
             switch (this.PlayerDirection)
             {
                 case PlayerDirection.LEFT:
@@ -64,13 +70,32 @@ namespace console_snake.Entity
             return this.Position.Equals(food.Position);
         }
 
-        public bool OutOfBounds()
+        public bool InvalidMove()
         {
             if (this.Position.X < 0) return true;
             if (this.Position.Y < 0) return true;
             if (this.Position.X > _mapSize.X) return true;
             if (this.Position.Y > _mapSize.Y) return true;
+            if(this.Tail.Any(x => x.Position.Equals(this.Position))) return true;
             return false;
+        }
+        private void TailMove()
+        {
+            if (this.Tail.Count > 0)
+            {
+                this.Tail[0].SetPosition(new Position(this.Position));
+                for (int i = 1; i < Tail.Count; i++)
+                {
+                    int j = i;
+                    Tail[i].SetPosition(new Position(Tail[--j].OldPosition));
+                }
+            }
+        }
+        public Tail TailGrow()
+        {
+            Tail newTail = new Tail(new Position(this.Position), ConsoleColor.DarkGreen);
+            this.Tail.Add(newTail);
+            return newTail;
         }
     }
 }

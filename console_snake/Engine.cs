@@ -41,7 +41,7 @@ namespace console_snake
             while (_isRunning)
             {
                 _player.Move();
-                if (_player.OutOfBounds())
+                if (_player.InvalidMove())
                 {
                     this._isRunning = false;
                     Console.Clear();
@@ -52,6 +52,7 @@ namespace console_snake
 
                 if (this._player.FoodColide(this._food))
                 {
+                    _map.Entities.Add(this._player.TailGrow());
                     this._food.RandomPos(this._map);
                 }
 
