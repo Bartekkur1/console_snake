@@ -13,6 +13,5 @@ namespace console_snake.Entity
             this.Size = new Position(x*2,y);
             this.Entities = new List<Entity>();
         }
-
     }
 }

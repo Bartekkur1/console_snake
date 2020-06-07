@@ -4,9 +4,9 @@ namespace console_snake.Entity
 {
     public class Food : Entity
     {
-        public void RandomPos(Map map)
+        public void RandomPos(int map_x, int map_y)
         {
-            this.Position = Position.GenerateRandom(map.Size.X - 2, --map.Size.Y, 1, 1);
+            this.Position = Position.GenerateRandom(map_x - 2, map_y - 1, 1, 1);
             if (this.Position.X % 2 != 0)
             {
                 this.Position.X++;

@@ -28,7 +28,7 @@ namespace console_snake
             this._player = new Player(20,10,ConsoleColor.Green);
             this._player.SetSizeMap(this._map);
             this._food = new Food(0, 0, ConsoleColor.Red);
-            this._food.RandomPos(this._map);
+            this._food.RandomPos(this._map.Size.X, this._map.Size.Y);
             _map.Entities.Add(_food);
             _map.Entities.Add(_player);
 
@@ -53,7 +53,7 @@ namespace console_snake
                 if (this._player.FoodColide(this._food))
                 {
                     _map.Entities.Add(this._player.TailGrow());
-                    this._food.RandomPos(this._map);
+                    this._food.RandomPos(this._map.Size.X, this._map.Size.Y);
                 }
 
                 this._mapRenderer.Render();
