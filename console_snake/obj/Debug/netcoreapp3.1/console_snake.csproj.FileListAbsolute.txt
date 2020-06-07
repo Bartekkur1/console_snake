@@ -1,0 +1,13 @@
+C:\Users\archp\source\repos\console_snake\console_snake\bin\Debug\netcoreapp3.1\console_snake.exe
+C:\Users\archp\source\repos\console_snake\console_snake\bin\Debug\netcoreapp3.1\console_snake.deps.json
+C:\Users\archp\source\repos\console_snake\console_snake\bin\Debug\netcoreapp3.1\console_snake.runtimeconfig.json
+C:\Users\archp\source\repos\console_snake\console_snake\bin\Debug\netcoreapp3.1\console_snake.runtimeconfig.dev.json
+C:\Users\archp\source\repos\console_snake\console_snake\bin\Debug\netcoreapp3.1\console_snake.dll
+C:\Users\archp\source\repos\console_snake\console_snake\bin\Debug\netcoreapp3.1\console_snake.pdb
+C:\Users\archp\source\repos\console_snake\console_snake\obj\Debug\netcoreapp3.1\console_snake.csprojAssemblyReference.cache
+C:\Users\archp\source\repos\console_snake\console_snake\obj\Debug\netcoreapp3.1\console_snake.csproj.CoreCompileInputs.cache
+C:\Users\archp\source\repos\console_snake\console_snake\obj\Debug\netcoreapp3.1\console_snake.AssemblyInfoInputs.cache
+C:\Users\archp\source\repos\console_snake\console_snake\obj\Debug\netcoreapp3.1\console_snake.AssemblyInfo.cs
+C:\Users\archp\source\repos\console_snake\console_snake\obj\Debug\netcoreapp3.1\console_snake.dll
+C:\Users\archp\source\repos\console_snake\console_snake\obj\Debug\netcoreapp3.1\console_snake.pdb
+C:\Users\archp\source\repos\console_snake\console_snake\obj\Debug\netcoreapp3.1\console_snake.genruntimeconfig.cache
