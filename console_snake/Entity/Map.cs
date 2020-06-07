@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace console_snake.Entity
 {
@@ -9,7 +10,7 @@ namespace console_snake.Entity
 
         public Map(int x , int y)
         {
-            this.Size = new Position(x,y);
+            this.Size = new Position(x*2,y);
             this.Entities = new List<Entity>();
         }
     }
