@@ -11,6 +11,7 @@ namespace console_snake
             en.Run();
 
             Console.ReadLine();
+
         }
     }
 }
