@@ -15,8 +15,9 @@ namespace console_snake
         private MapRenderer _mapRenderer { get; set; }
         private Map _map { get; set; }
         private Player _player { get; set; }
-        public bool IsRunning { get; set; } = true;
-        public int GameLoop { get; set; } = 200;
+        private bool _isRunning { get; set; } = true;
+        private int _gameLoop { get; set; } = 200;
+        private Food _food { get; set; }
 
         public void Init()
         {
@@ -25,6 +26,10 @@ namespace console_snake
             Console.CursorVisible = false;
             this._map = new Map(20, 20);
             this._player = new Player(20,10,ConsoleColor.Green);
+            this._player.SetSizeMap(this._map);
+            this._food = new Food(0, 0, ConsoleColor.Red);
+            this._food.RandomPos(this._map);
+            _map.Entities.Add(_food);
             _map.Entities.Add(_player);
 
             _mapRenderer = new MapRenderer(_map);
@@ -33,19 +38,25 @@ namespace console_snake
         public void Run()
         {
 
-            while (IsRunning)
+            while (_isRunning)
             {
                 _player.Move();
-                if (_player.OutOfBounds(this._map))
+                if (_player.OutOfBounds())
                 {
-                    this.IsRunning = false;
+                    this._isRunning = false;
                     Console.Clear();
                     Console.ForegroundColor = ConsoleColor.White;
                     Console.WriteLine("Game Over");
                     break;
                 }
+
+                if (this._player.FoodColide(this._food))
+                {
+                    this._food.RandomPos(this._map);
+                }
+
                 this._mapRenderer.Render();
-                Thread.Sleep(GameLoop);
+                Thread.Sleep(_gameLoop);
                 while (Console.KeyAvailable)
                 {
 

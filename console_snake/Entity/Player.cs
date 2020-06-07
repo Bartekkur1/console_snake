@@ -8,11 +8,17 @@ namespace console_snake.Entity
     {
         public PlayerDirection PlayerDirection { get; set; }
         public int Speed { get; set; } = 1;
-        public Player(int x, int y, ConsoleColor color)
+        private Position _mapSize  { get; set; }
+        public Player(int x, int y, ConsoleColor color) : base(x, y, color)
         {
-            this.Position = new Position(x,y);
-            this.Color = color;
             this.PlayerDirection = PlayerDirection.DOWN;
+        }
+
+        public void SetSizeMap(Map map)
+        {
+            this._mapSize = map.Size;
+            this._mapSize.X--;
+            this._mapSize.Y--;
         }
 
         public void SetDirection(ConsoleKey keyPressed)
@@ -53,12 +59,17 @@ namespace console_snake.Entity
             }
         }
 
-        public bool OutOfBounds(Map map)
+        public bool FoodColide(Food food)
+        {
+            return this.Position.Equals(food.Position);
+        }
+
+        public bool OutOfBounds()
         {
             if (this.Position.X < 0) return true;
             if (this.Position.Y < 0) return true;
-            if (this.Position.X > map.Size.X-1) return true;
-            if (this.Position.Y > map.Size.Y-1) return true;
+            if (this.Position.X > _mapSize.X) return true;
+            if (this.Position.Y > _mapSize.Y) return true;
             return false;
         }
     }
