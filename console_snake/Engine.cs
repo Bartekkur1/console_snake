@@ -62,7 +62,7 @@ namespace console_snake
                 {
 
                     var keyPressed = Console.ReadKey().Key;
-                    _player.SetDirection(keyPressed);
+                    _player.SetDirection(keyPressed, _player.PlayerDirection);
                 }
             }
         }
