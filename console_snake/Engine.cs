@@ -26,9 +26,9 @@ namespace console_snake
             Console.CursorVisible = false;
             this._map = new Map(20, 20);
             this._player = new Player(20,10,ConsoleColor.Green);
-            this._player.SetSizeMap(this._map);
+            this._player.SetSizeMap(this._map.Size.X, this._map.Size.Y);
             this._food = new Food(0, 0, ConsoleColor.Red);
-            this._food.RandomPos(this._map.Size.X, this._map.Size.Y);
+            this._food.RandomPos(this._map.Size.X, this._map.Size.Y, this._map.Entities);
             _map.Entities.Add(_food);
             _map.Entities.Add(_player);
 
@@ -46,7 +46,7 @@ namespace console_snake
                     this._isRunning = false;
                     Console.Clear();
                     Console.ForegroundColor = ConsoleColor.White;
-                    Console.WriteLine("Game Over");
+                    Console.WriteLine($"Game Over, Score: {this._player.Tail.Count}");
                     break;
                 }
 
@@ -54,7 +54,7 @@ namespace console_snake
                 {
                     if (this._gameLoop > 50) _gameLoop -= 5;
                     _map.Entities.Add(this._player.TailGrow());
-                    this._food.RandomPos(this._map.Size.X, this._map.Size.Y);
+                    this._food.RandomPos(this._map.Size.X, this._map.Size.Y, this._map.Entities);
                 }
 
                 this._mapRenderer.Render();

@@ -10,17 +10,16 @@ namespace console_snake.Entity
         public int Speed { get; set; } = 1;
         private Position _mapSize  { get; set; }
         public List<Tail> Tail { get; set; }
+        public Position OldPosition { get; set; }
         public Player(int x, int y, ConsoleColor color) : base(x, y, color)
         {
             this.PlayerDirection = PlayerDirection.DOWN;
             this.Tail = new List<Tail>();
         }
 
-        public void SetSizeMap(Map map)
+        public void SetSizeMap(int x, int y)
         {
-            this._mapSize = map.Size;
-            this._mapSize.X--;
-            this._mapSize.Y--;
+            this._mapSize = new Position(--x,--y);
         }
 
         public void SetDirection(ConsoleKey keyPressed)
@@ -44,6 +43,7 @@ namespace console_snake.Entity
 
         public void Move()
         {
+            this.OldPosition = new Position(this.Position);
             this.TailMove();
 
             switch (this.PlayerDirection)
@@ -81,7 +81,7 @@ namespace console_snake.Entity
         {
             if (this.Tail.Count > 0)
             {
-                this.Tail[0].SetPosition(new Position(this.Position));
+                this.Tail[0].SetPosition(new Position(this.OldPosition));
                 for (int i = 1; i < Tail.Count; i++)
                 {
                     int j = i;
@@ -91,7 +91,7 @@ namespace console_snake.Entity
         }
         public Tail TailGrow()
         {
-            Tail newTail = new Tail(new Position(this.Position), ConsoleColor.DarkGreen);
+            Tail newTail = new Tail(new Position(this.OldPosition), ConsoleColor.DarkGreen);
             this.Tail.Add(newTail);
             return newTail;
         }
