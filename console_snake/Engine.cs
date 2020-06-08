@@ -16,7 +16,7 @@ namespace console_snake
         private Map _map { get; set; }
         private Player _player { get; set; }
         private bool _isRunning { get; set; } = true;
-        private int _gameLoop { get; set; } = 200;
+        private int _gameLoop { get; set; } = 150;
         private Food _food { get; set; }
 
         public void Init()
@@ -52,6 +52,7 @@ namespace console_snake
 
                 if (this._player.FoodColide(this._food))
                 {
+                    if (this._gameLoop > 50) _gameLoop -= 5;
                     _map.Entities.Add(this._player.TailGrow());
                     this._food.RandomPos(this._map.Size.X, this._map.Size.Y);
                 }
