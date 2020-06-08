@@ -23,21 +23,21 @@ namespace console_snake.Entity
             this._mapSize.Y--;
         }
 
-        public void SetDirection(ConsoleKey keyPressed, PlayerDirection playerDirection)
+        public void SetDirection(ConsoleKey keyPressed)
         {
             switch (keyPressed)
             {
                 case ConsoleKey.A:
-                    if(playerDirection != PlayerDirection.RIGHT) this.PlayerDirection = PlayerDirection.LEFT;
+                    if(this.PlayerDirection != PlayerDirection.RIGHT) this.PlayerDirection = PlayerDirection.LEFT;
                     break;
                 case ConsoleKey.D:
-                    if (playerDirection != PlayerDirection.LEFT) this.PlayerDirection = PlayerDirection.RIGHT;
+                    if (this.PlayerDirection != PlayerDirection.LEFT) this.PlayerDirection = PlayerDirection.RIGHT;
                     break;
                 case ConsoleKey.W:
-                    if (playerDirection != PlayerDirection.DOWN) this.PlayerDirection = PlayerDirection.UP;
+                    if (this.PlayerDirection != PlayerDirection.DOWN) this.PlayerDirection = PlayerDirection.UP;
                     break;
                 case ConsoleKey.S:
-                    if (playerDirection != PlayerDirection.UP) this.PlayerDirection = PlayerDirection.DOWN;
+                    if (this.PlayerDirection != PlayerDirection.UP) this.PlayerDirection = PlayerDirection.DOWN;
                     break;
             }
         }
